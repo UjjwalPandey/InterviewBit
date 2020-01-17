@@ -15,7 +15,7 @@ Output: [3,4]
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Solution1 {
+public class TwoNumberSumForTarget {
     private static ArrayList<Integer> Sum(ArrayList<Integer> arr, int targetValue){
         ArrayList<Integer> res = new ArrayList<>();
         HashMap<Integer, Integer> hm = new HashMap<>();
