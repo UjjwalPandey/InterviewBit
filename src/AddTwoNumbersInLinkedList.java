@@ -1,3 +1,11 @@
+/* Adding two numbers. Provided both the numbers are given in linked list. And they are in reverse order.
+ *
+ * L1: [7, 4, 3]
+ * L2: [4, 7, 8, 9]
+ * Output: [1, 0, 2, 2, 1]
+ *
+ */
+
 import java.util.LinkedList;
 
 public class AddTwoNumbersInLinkedList {
