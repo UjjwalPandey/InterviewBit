@@ -58,7 +58,7 @@ public class AnagramGroups {
                 System.out.println("Block 2:  "+i);
                 ArrayList<Integer> indices = map.get(str);
                 indices.add(i+1);
-                map.remove(str);
+                //map.remove(str);
                 map.put(str, indices);
             }
             System.out.println("Map after "+i+"th iteration is"+map.toString());

@@ -6,7 +6,9 @@
  *
  */
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 public class AddTwoNumbersInLinkedList {
     private static LinkedList<Integer> SumTwoLinkedList(LinkedList<Integer> l1, LinkedList<Integer> l2){
@@ -15,7 +17,7 @@ public class AddTwoNumbersInLinkedList {
         int size2 = l2.size();
         int carry =0;
         int counter = 0;
-        while((counter < size1) & (counter < size2)){
+        while((counter < size1) && (counter < size2)){
             int x = l1.get(counter) + l2.get(counter)+carry;
             sum.push(x%10);
             carry = x/10;
