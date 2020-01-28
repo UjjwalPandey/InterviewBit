@@ -17,28 +17,17 @@ public class RainWaterTrapped {
         System.out.println("Result: "+trap(arr));
     }
     public static int trap(final int[] A) {
-        int len = A.length;
-        int i =0;
-        int count = 0;
-        for(i=0; i< len; i++){
-            int ip = A[i];
-            int flag = -1;
-            int temp_counter = 0;
-            for(int j = i+1; j<len; j++){
-                if(ip > A[j]){
-                    temp_counter++;
-//                    temp_counter+= Math.abs(A[j]-ip);
-                    flag=0;
-                    System.out.println("A["+j+"] = "+A[j]+", ip = "+ip+" Count = "+count);
-                }else{
-                    flag = 1;
-                    break;
-                }
+            int count = 0;
+            int n = A.length;
+            for (int i = 1; i < n-1; i++) {
+                int left = A[i];
+                for (int j=0; j<i; j++)
+                    left = Math.max(left, A[j]);
+                int right = A[i];
+                for (int j=i+1; j<n; j++)
+                    right = Math.max(right, A[j]);
+                count = count + (Math.min(left, right) - A[i]);
             }
-            if(flag==1) count+=temp_counter;
-            System.out.println(i+" "+count);
+            return count;
         }
-        return count;
     }
-
-}
