@@ -8,7 +8,7 @@
 import java.math.BigInteger;
 public class GCD {
     public static void main(String[] args) {
-        int A = 35, B = 30;
+        int A = 34967436, B= 40689075;
         String a = "00035", b ="00030";
         System.out.println("GCD = "+gcd(A,B));
         System.out.println("GCD BigInteger = "+gcdBigInt(a,b));
