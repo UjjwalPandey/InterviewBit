@@ -1,3 +1,5 @@
+package Maths;
+
 /** Find if two rectangles overlap
 
  Given eight integers A, B, C, D, E, F, G and H which represent two rectangles in a 2D plane.

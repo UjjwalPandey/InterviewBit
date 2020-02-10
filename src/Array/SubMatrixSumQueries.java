@@ -1,3 +1,5 @@
+package Array;
+
 public class SubMatrixSumQueries {
     final static int VAL = 1000000007;
     public static int[][] preProcess(int[][] mat){

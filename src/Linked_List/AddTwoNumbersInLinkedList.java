@@ -1,4 +1,4 @@
-/* Adding two numbers. Provided both the numbers are given in linked list. And they are in reverse order.
+package Linked_List;/* Adding two numbers. Provided both the numbers are given in linked list. And they are in reverse order.
  *
  * L1: [7, 4, 3]
  * L2: [4, 7, 8, 9]

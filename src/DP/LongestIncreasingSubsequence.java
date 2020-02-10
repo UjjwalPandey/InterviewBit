@@ -1,3 +1,5 @@
+package DP;
+
 public class LongestIncreasingSubsequence {
     static int lis(int input1, int[] input2)
     {

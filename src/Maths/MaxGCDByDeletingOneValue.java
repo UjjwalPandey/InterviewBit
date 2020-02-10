@@ -1,7 +1,9 @@
+package Maths;
+
 /**
- * Given an integer array A of size N. You have to delete one element such that the GCD(Greatest common divisor) of the remaining array is maximum.
+ * Given an integer array A of size N. You have to delete one element such that the Maths.GCD(Greatest common divisor) of the remaining array is maximum.
  *
- * Find the maximum value of GCD.
+ * Find the maximum value of Maths.GCD.
  */
 
 public class MaxGCDByDeletingOneValue {

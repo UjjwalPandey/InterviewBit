@@ -1,3 +1,5 @@
+package Maths;
+
 import java.util.Arrays;
 
 /** Minimum operations of given type to make all elements of a matrix equal

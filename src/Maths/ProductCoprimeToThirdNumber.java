@@ -1,3 +1,5 @@
+package Maths;
+
 import java.math.BigInteger;
 
 /** You are given 2 arrays A and B of size N and M respectively and a number K.

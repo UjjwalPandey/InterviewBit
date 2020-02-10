@@ -1,3 +1,5 @@
+package Maths;
+
 /** Solve sub-sequences and return OR
  A subsequence is a sequence that can be derived from another sequence by deleting some elements without changing the order of the remaining elements.
  For example, the sequence {2, 3, 5} is a subsequence of {1, 2, 3, 4, 5} obtained after removal of elements {1, 4}.

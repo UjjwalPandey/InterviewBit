@@ -1,7 +1,7 @@
-/** Fina GCD(a,b)
+package Maths; /** Fina Maths.GCD(a,b)
  * You are given a number P and a number Q.
- * Greatest Common Divisor (GCD) of all numbers between P and Q inclusive is taken (GCD(P, P+1, P+2 ... Q)).
- * As this problem looks a bit easy, it is given that numbers P and Q can be in the range of 10100. You have to return the value of GCD found.
+ * Greatest Common Divisor (Maths.GCD) of all numbers between P and Q inclusive is taken (Maths.GCD(P, P+1, P+2 ... Q)).
+ * As this problem looks a bit easy, it is given that numbers P and Q can be in the range of 10100. You have to return the value of Maths.GCD found.
  * Greatest common divisor of 2 numbers A and B is the largest number D that divides both A and B perfectly.
  */
 
@@ -10,8 +10,8 @@ public class GCD {
     public static void main(String[] args) {
         int A = 34967436, B= 40689075;
         String a = "00035", b ="00030";
-        System.out.println("GCD = "+gcd(A,B));
-        System.out.println("GCD BigInteger = "+gcdBigInt(a,b));
+        System.out.println("Maths.GCD = "+gcd(A,B));
+        System.out.println("Maths.GCD BigInteger = "+gcdBigInt(a,b));
     }
     public static int gcd(int a, int b){
         if(b == 0) return a;

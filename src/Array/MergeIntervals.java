@@ -1,4 +1,4 @@
-/** Given a set of non-overlapping intervals, insert a new interval into the intervals (merge if necessary).
+package Array; /** Given a set of non-overlapping intervals, insert a new interval into the intervals (merge if necessary).
  * You may assume that the intervals were initially sorted according to their start times.
  * Example 1: Given intervals [1,3],[6,9] insert and merge [2,5] would result in [1,5],[6,9].
  * Example 2: Given [1,2],[3,5],[6,7],[8,10],[12,16], insert and merge [4,9] would result in [1,2],[3,10],[12,16].
@@ -16,9 +16,9 @@ class Interval {
  }
 public class MergeIntervals {
     public static void main(String[] args) {
-//        Interval i1 = new Interval(31935139, 38366404);
-//        Interval i2 = new Interval(54099301, 76986474);
-//        Interval i3 = new Interval(87248431, 94675146);
+//        Array.Interval i1 = new Array.Interval(31935139, 38366404);
+//        Array.Interval i2 = new Array.Interval(54099301, 76986474);
+//        Array.Interval i3 = new Array.Interval(87248431, 94675146);
         Interval i1 = new Interval(1,2);
         Interval i2 = new Interval(3,5);
         Interval i3 = new Interval(6,7);
@@ -49,7 +49,7 @@ public class MergeIntervals {
     public static ArrayList<Interval> insert(ArrayList<Interval> intervals, Interval newInterval) {
         int totalIntervals = intervals.size();
         int startIndex = -1, endIndex = -1;
-        System.out.println("New Interval: "+newInterval.start+",  "+newInterval.end);
+        System.out.println("New Array.Interval: "+newInterval.start+",  "+newInterval.end);
         for(int i =0; i< totalIntervals; i++){
             if(newInterval.start < intervals.get(i).end){
                 startIndex = i;
