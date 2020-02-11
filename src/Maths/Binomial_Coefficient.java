@@ -19,6 +19,10 @@
 
  Output Format
  Return the value of nCr % m.
+
+ Note: Important links to solve the question:
+ 1. Fermat Little Theorem and Controlling Overflow https://www.geeksforgeeks.org/compute-ncr-p-set-3-using-fermat-little-theorem/
+ 2. LUCAS THEOREM https://www.geeksforgeeks.org/compute-ncr-p-set-2-lucas-theorem/
  *
  */
 
@@ -37,7 +41,7 @@ public class Binomial_Coefficient {
         System.out.println(nCrModPFermat(A,B,C));
     }
 
-    // Using Fermat Little Theorem and Controlling Overflow
+    // Using Fermat Little Theorem and Controlling Overflow https://www.geeksforgeeks.org/compute-ncr-p-set-3-using-fermat-little-theorem/
     static int nCrModPFermat(int n, int r, int p) {
         if (r == 0)
             return 1;
