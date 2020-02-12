@@ -50,9 +50,8 @@ public class Reverse_Bits {
             }
             a = a / 2;
         }
-        for(int i= str.length(); i<=32; i++){
-            str.append("0");
-        }
+        str.append("0".repeat(Math.max(0, 32 - str.length() + 1)));
+
         String[] ch = str.toString().split("");
         for(int i=31; i>=0; i--){
             res += Long.parseLong(ch[i])*Math.pow(2,31-i);
