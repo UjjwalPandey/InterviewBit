@@ -11,7 +11,7 @@ public class Min_XOR_Value {
         int min = Integer.MAX_VALUE;
         Arrays.sort(A); // SORTING helped reducing the second loop as we need to find the minimum XOR value from the Array.
         for(int i=1; i< A.length; i++){
-            min = ((A[i]^A[i-1]) < min)?(A[i]^A[i-1]):min;
+            min = Math.min((A[i] ^ A[i - 1]), min);
         }
         return min;
     }
