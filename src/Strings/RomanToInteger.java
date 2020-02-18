@@ -6,8 +6,7 @@ import java.util.Map;
 public class RomanToInteger {
     public static void main(String[] args) {
         String[] N = {"MCMXII", "IV", "XXIX", "LXV","XXX","LD","MMDCCCXLV","XLV"};   // 1912
-        for (int i=0; i< N.length; i++)
-            System.out.println(romanToInteger(N[i]));
+        for (String s : N) System.out.println(romanToInteger(s));
     }
 
     private static int romanToInteger(String n) {
@@ -37,7 +36,6 @@ public class RomanToInteger {
             romanIntVal[i] = x;
 
         }
-        int max = Integer.MIN_VALUE;
         int i=0;
         boolean lastValInNegative = true;
         while(i+1 < romanIntVal.length){
