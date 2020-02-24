@@ -12,7 +12,7 @@
     Warning : DO NOT USE LIBRARY FUNCTION FOR GENERATING PERMUTATIONS.
     Example : next_permutations in C++ / itertools.permutations in python.
  */
-package Recursion;
+package RecursionAndBackTrackinig;
 
 import java.util.ArrayList;
 
