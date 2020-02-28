@@ -29,10 +29,10 @@ public class HowManyPalindrome {
         return result;
     }
 
-    static long CountPS(char str[], int n) {
+    static long CountPS(char[] str, int n) {
         if(str.length == 1) return 1;
-        long dp[][] = new long[n][n];
-        boolean P[][] = new boolean[n][n];
+        long[][] dp = new long[n][n];
+        boolean[][] P = new boolean[n][n];
 
         for (int i= 0; i< n; i++)
             P[i][i] = true;
@@ -51,7 +51,7 @@ public class HowManyPalindrome {
                 if (str[i] == str[j] && P[i+1][j-1] )
                     P[i][j] = true;
 
-                if (P[i][j] == true)
+                if (P[i][j])
                     dp[i][j] = dp[i][j-1] + dp[i+1][j] + 1 - dp[i+1][j-1];
                 else
                     dp[i][j] = dp[i][j-1] + dp[i+1][j] - dp[i+1][j-1];
