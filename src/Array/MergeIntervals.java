@@ -1,20 +1,23 @@
-package Array; /** Given a set of non-overlapping intervals, insert a new interval into the intervals (merge if necessary).
+/* Given a set of non-overlapping intervals, insert a new interval into the intervals (merge if necessary).
  * You may assume that the intervals were initially sorted according to their start times.
  * Example 1: Given intervals [1,3],[6,9] insert and merge [2,5] would result in [1,5],[6,9].
  * Example 2: Given [1,2],[3,5],[6,7],[8,10],[12,16], insert and merge [4,9] would result in [1,2],[3,10],[12,16].
  * This is because the new interval [4,9] overlaps with [3,5],[6,7],[8,10]. Make sure the returned intervals are also sorted.
  *
  */
+package Array;
 
 import java.util.ArrayList;
 
-class Interval {
-     int start;
-     int end;
-     Interval() { start = 0; end = 0; }
-     Interval(int s, int e) { start = s; end = e; }
- }
 public class MergeIntervals {
+
+    private static class Interval {
+        int start;
+        int end;
+        //Interval() { start = 0; end = 0; }
+        Interval(int s, int e) { start = s; end = e; }
+    }
+
     public static void main(String[] args) {
 //        Array.Interval i1 = new Array.Interval(31935139, 38366404);
 //        Array.Interval i2 = new Array.Interval(54099301, 76986474);
@@ -39,9 +42,8 @@ public class MergeIntervals {
     }
 
     private static void printIntervals(ArrayList<Interval> result) {
-        int totalIntervals = result.size();
-        for(int i=0; i< totalIntervals; i++){
-            System.out.print("[ "+result.get(i).start+", "+result.get(i).end+"],");
+        for (Interval interval : result) {
+            System.out.print("[ " + interval.start + ", " + interval.end + "],");
         }
         System.out.println();
     }
@@ -85,7 +87,7 @@ public class MergeIntervals {
                 resultArray.add(intervals.get(i));
             }
             int intervalStart, intervalEnd;
-            intervalStart = (intervals.get(startIndex).start < newInterval.start) ? intervals.get(startIndex).start : newInterval.start;
+            intervalStart = Math.min(intervals.get(startIndex).start, newInterval.start);
             if (endIndex == totalIntervals) {
                 intervalEnd = newInterval.end;
             }else if( newInterval.end < intervals.get(endIndex).start){
@@ -98,7 +100,7 @@ public class MergeIntervals {
                 }
                 return resultArray;
             }else {
-                intervalEnd = (intervals.get(endIndex).end > newInterval.end) ? intervals.get(endIndex).end : newInterval.end;
+                intervalEnd = Math.max(intervals.get(endIndex).end, newInterval.end);
             }
             Interval updatedInterval = new Interval(intervalStart, intervalEnd);
             resultArray.add(updatedInterval);
