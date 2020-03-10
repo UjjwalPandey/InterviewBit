@@ -1,37 +1,51 @@
+/*  Write a program to solve a Sudoku puzzle by filling the empty cells.
+    Empty cells are indicated by the character '.' You may assume that there will be only one unique solution.
+    A sudoku puzzle,   and its solution numbers marked in red.
+
+    Problem Constraints
+    1 <= N <= 9
+
+    Input Format
+        First argument is an array of array of characters representing the Sudoku puzzle.
+
+    Output Format
+        Modify the given input to the required answer.
+
+    Example Input
+        Input 1:
+            A = [[53..7....], [6..195...], [.98....6.], [8...6...3], [4..8.3..1], [7...2...6], [.6....28.], [...419..5], [....8..79]]
+
+    Example Output
+        Output 1:
+            [[534678912], [672195348], [198342567], [859761423], [426853791], [713924856], [961537284], [287419635], [345286179]]
+
+    Example Explanation
+        Explanation 1:
+            Look at the diagrams given in the question.
+
+ */
 package RecursionAndBackTrackinig;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 
 public class Sudoku {
-    public static void main(String[] args) {
-        ArrayList<ArrayList<Character>> s1 = new ArrayList<>();
-        String[] str = {"53..7....", "6..195...", ".98....6.", "8...6...3", "4..8.3..1", "7...2...6", ".6....28.", "...419..5", "....8..79"};
-        for(String s: str){
-            char[] c = s.toCharArray();
-            ArrayList<Character> charList = new ArrayList<>();
-            for(char ch: c){
-                charList.add(ch);
-            }
-            s1.add(charList);
-        }
-        // Print the question
-        printList(s1);
-        solveSudoku(s1);
-        // Print Solution
-        printList(s1);
-    }
+    static  ArrayList<HashSet<Integer>> blocks;
+    static  ArrayList<HashSet<Integer>> rows;
+    static  ArrayList<HashSet<Integer>> cols;
+    static ArrayList<ArrayList<Character>> result;
 
     private static void printList(ArrayList<ArrayList<Character>> s1) {
-        for(int i =0; i< s1.size(); i++) {
-            for (int j = 0; j < s1.get(i).size(); j++) {
-                System.out.print(s1.get(i).get(j)+"  ");
+        for (ArrayList<Character> characters : s1) {
+            for (Character character : characters) {
+                System.out.print(character + "  ");
             }
             System.out.println();
         }
         System.out.println();
-        System.out.println();
     }
+
+    // Finding the block(1-9) for a given coordinate.
 
     private static int findBlockNumber(int i, int j) {
         if(i < 3){
@@ -60,12 +74,15 @@ public class Sudoku {
             }
         }
     }
+    // Filling up the vales of Blocks, Rows, Column ArrayLists.
 
-    static  ArrayList<HashSet<Integer>> blocks = new ArrayList<>();
-    static  ArrayList<HashSet<Integer>> rows = new ArrayList<>();
-    static  ArrayList<HashSet<Integer>> cols = new ArrayList<>();
-    public static void solveSudoku(ArrayList<ArrayList<Character>> a) {
+    public static ArrayList<ArrayList<Character>> solveSudoku(ArrayList<ArrayList<Character>> a) {
+        blocks = new ArrayList<>();
+        rows = new ArrayList<>();
+        cols = new ArrayList<>();
+
         int emptyFields = 0;
+
         for(int i =0; i< a.size(); i++){
             HashSet<Integer> colHS = new HashSet<>();
             HashSet<Integer> rowHS = new HashSet<>();
@@ -81,9 +98,10 @@ public class Sudoku {
             cols.add(colHS);
         }
 
-        for(int i = 0; i <= 8; i++) {
+        for(int i = 0; i < 9; i++) {
             blocks.add(new HashSet<>());
         }
+
         for(int i = 0; i < 9; i++) {
             for(int j = 0; j < 9 ; j++){
                 int blockNo = findBlockNumber(i,j);
@@ -94,62 +112,77 @@ public class Sudoku {
             }
         }
 
-        prepareSudoku(a,0,0,1,0,emptyFields,rows,cols,blocks);
+        prepareSudoku(a,0,0,  0, emptyFields);
+        return a;
     }
-
-   private static void prepareSudoku(ArrayList<ArrayList<Character>> a, int x, int y, int candidateVal, int currEmpty, int emptyFields, ArrayList<HashSet<Integer>> rows, ArrayList<HashSet<Integer>> col, ArrayList<HashSet<Integer>> blocks) {
-        System.out.println(x + "  " + y + "  CurrEmpty  " + currEmpty+"  Empty Fields  = "+emptyFields);
-        if (currEmpty == emptyFields) {
-            boolean isRowFilled = true, isColFilled = true, isBlockFilled = true;
-            for (int i = 0; i < 9; i++) {
-                if (rows.get(i).size() != 9) isRowFilled = false;
-                if (col.get(i).size() != 9) isColFilled = false;
-                if (blocks.get(i).size() != 9) isBlockFilled = false;
+   private static int prepareSudoku(ArrayList<ArrayList<Character>> a, int x, int y, int emptyCounts, int totalEmptyFields) {
+        // BASE CASE: When all fields are filled.
+        if(emptyCounts == totalEmptyFields){
+           result = new ArrayList<>(a);
+           return 1;
+       }
+       char ch = a.get(x).get(y);
+       int resultType;
+       // If position not empty then move to next vacant position
+       if(ch != '.'){
+            if(y == a.size()-1) {
+                resultType = prepareSudoku(a,x+1,0,  emptyCounts, totalEmptyFields);
             }
-            if (isRowFilled && isColFilled && isBlockFilled) {
-                printList(a);
-                return;
-            }
-        }
-
-        char ch = a.get(x).get(y);
-        int nextPossibility = candidateVal, positionEmpty = 0;
-        if (ch == '.') {
-            positionEmpty = 1;
-        }
-        printList(a);
-        while(nextPossibility != -1) {
-            System.out.println("Next Poss =  "+nextPossibility);
-            int blockNum = findBlockNumber(x, y);
-            nextPossibility = findNext(rows.get(x), col.get(y), blocks.get(blockNum - 1), nextPossibility);
-            if(nextPossibility == -1) return;
-            if(positionEmpty == 1) {
-                System.out.println("X = " + x + "  Y = " + y + "  BlockNum =  " + blockNum + " Next Possible =  " + nextPossibility);
-                a.get(x).set(y, (char) (nextPossibility + '0'));
-                rows.get(x).add(nextPossibility);
-                col.get(y).add(nextPossibility);
-                blocks.get(blockNum - 1).add(nextPossibility);
-            }
-            if (y < a.get(x).size() - 1)
-                prepareSudoku(a, x, y + 1, nextPossibility, currEmpty + positionEmpty, emptyFields, rows, col, blocks);
             else {
-                prepareSudoku(a, x + 1, 0, nextPossibility, currEmpty + positionEmpty, emptyFields, rows, col, blocks);
+                resultType = prepareSudoku(a,x,y+1,  emptyCounts, totalEmptyFields);
             }
-            if(positionEmpty == 1) {
-                rows.get(x).remove(nextPossibility);
-                col.get(y).remove(nextPossibility);
-                blocks.get(blockNum).remove(nextPossibility);
+            if(resultType == 1) return resultType;
+       }else{
+           // Vacant position
+            for(int possibleNum = 1; possibleNum <= 9; possibleNum++) {
+                // Check if the number suits the condition
+                if(isValid(rows.get(x), cols.get(y), blocks.get(findBlockNumber(x, y) - 1), possibleNum)) {
+                    // DO the changes
+                    a.get(x).set(y, (char) (possibleNum + '0'));
+                    rows.get(x).add(possibleNum);
+                    cols.get(y).add(possibleNum);
+                    blocks.get(findBlockNumber(x, y) - 1).add(possibleNum);
+                    // Recursion with next position
+                    if (y == a.size() - 1) {
+                        resultType = prepareSudoku(a, x + 1, 0, emptyCounts + 1, totalEmptyFields);
+                    } else {
+                        resultType = prepareSudoku(a, x, y + 1, emptyCounts + 1, totalEmptyFields);
+                    }
+                    // If Sudoku solved(i.e. Return type == 1) the simply return the formed List
+                    if(resultType == 1) return resultType;
+                    // Else Roll back to earlier version.
+                    a.get(x).set(y, '.');
+                    rows.get(x).remove(possibleNum);
+                    cols.get(y).remove(possibleNum);
+                    blocks.get(findBlockNumber(x, y) - 1).remove(possibleNum);
+                }
             }
         }
-        System.out.println("End of Function");
+       // Sudoku not solved yet.
+       return 0;
+   }
+
+   // Checking if given value 'val' satisfies the Sudoku condition.
+
+    private static boolean isValid(HashSet<Integer> rows, HashSet<Integer> cols, HashSet<Integer> blocks,int val) {
+            return (!rows.contains(val) && !cols.contains(val) && !blocks.contains(val));
     }
 
-    private static int findNext(HashSet<Integer> rows, HashSet<Integer> cols, HashSet<Integer> blocks,int val) {
-        for(int i=val; i<=9; i++) {
-            if (!rows.contains(i) && !cols.contains(i) && !blocks.contains(i)) {
-                return i;
+    public static void main(String[] args) {
+        ArrayList<ArrayList<Character>> s1 = new ArrayList<>();
+        String[] str = {"53..7....", "6..195...", ".98....6.", "8...6...3", "4..8.3..1", "7...2...6", ".6....28.", "...419..5", "....8..79"};
+        for(String s: str){
+            char[] c = s.toCharArray();
+            ArrayList<Character> charList = new ArrayList<>();
+            for(char ch: c){
+                charList.add(ch);
             }
+            s1.add(charList);
         }
-        return -1;
+        // Print the question
+        printList(s1);
+        result = solveSudoku(s1);
+        // Print Solution
+        printList(result);
     }
 }
