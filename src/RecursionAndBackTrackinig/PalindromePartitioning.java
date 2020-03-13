@@ -41,7 +41,7 @@ public class PalindromePartitioning {
     static ArrayList<ArrayList<String>> ans;
     public static ArrayList<ArrayList<String>> partition(String a) {
         ans = new ArrayList<>();
-        getPartition(new ArrayList<String>(), a, 0);
+        getPartition(new ArrayList<>(), a, 0);
         return ans;
     }
 
