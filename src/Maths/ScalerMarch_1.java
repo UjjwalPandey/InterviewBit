@@ -6,56 +6,59 @@ public class ScalerMarch_1 {
     public static void main(String[] args) {
         ArrayList<Integer> ip = new ArrayList<>();
         ip.add(1);
-        ip.add(2);
         ip.add(3);
-//        ip.add(4);
-        int B = 2;
-        System.out.print(permuteDistance(ip, B));
+        ip.add(2);
+        ip.add(4);
+        ip.add(5);
+//        ip.add(6);
+        int B = 5;
+//        System.out.println(permuteDistance(ip, 6));
+        System.out.println(permuteDistance(ip, 5));
+        System.out.println(permuteDistance(ip, 4));
+        System.out.println(permuteDistance(ip, 3));
+        System.out.println(permuteDistance(ip, 2));
+        System.out.println(permuteDistance(ip, 1));
     }
 
-    private static int permuteDistance(ArrayList<Integer> N, int B) {
-        int result =0;
-        ArrayList<ArrayList<Integer>> res = permute(N);
-        for(int i=0; i < res.size(); i++){
-            int counter = 0;
-            for(int j=0; j < res.get(0).size(); j++){
-                if(!res.get(i).get(j).equals(N.get(j))) counter++;
-            }
-            if(counter <= B){
-                result++;
-//                System.out.println(res.get(i) +"  "+counter);
-            }
-        }
+    // static ArrayList<ArrayList<Integer>> res;
+//    static int result;
+    static int n;
+    static boolean[] marked;
+    static ArrayList<Integer> A;
+
+    public static int permuteDistance(ArrayList<Integer> N, int B) {
+        if(B < 2) return 1;
+
+        n = N.size();
+        marked = new boolean[n];
+        A = N;
+        int result = 0;
+        result = rec(0, new ArrayList<>(), N, B, result);
         return result;
     }
 
-    public static ArrayList<ArrayList<Integer>> permute(ArrayList<Integer> A) {
-        ArrayList<ArrayList<Integer>> res = new ArrayList<>();
-        if(A.size() == 1){
-            res.add(A);
-            return res;
+    public static int rec(int idx, ArrayList<Integer> temp, ArrayList<Integer> N, int B, int result){
+        if(idx == n){
+            int counter = 0;
+            for(int j =0; j < temp.size(); j++){
+                if(!temp.get(j).equals(N.get(j))) counter++;
+            }
+            if(counter <= B){
+                result++;
+            }
+            return result;
         }
 
-        for(int i=0; i< A.size(); i++){
-            int num = A.get(i);
-            ArrayList<Integer> remaining = new ArrayList<>();
-            if(i == 0){
-                remaining.addAll(A.subList(i+1,A.size()));
-            }else if(i== A.size()-1){
-                remaining.addAll(A.subList(0,i));
-            }else{
-                remaining.addAll(A.subList(0,i));
-                remaining.addAll(A.subList(i+1, A.size()));
-            }
-            ArrayList<ArrayList<Integer>> perm = permute(remaining);
-            for (ArrayList<Integer> integers : perm) {
-                ArrayList<Integer> temp = new ArrayList<>();
-                temp.add(num);
-                temp.addAll(integers);
-                res.add(temp);
+        for(int i=0; i< n; i++){
+            if(!marked[i]){
+                marked[i] = true;
+                temp.add(A.get(i));
+                result = rec(idx+1, temp, N, B, result);
+                marked[i] = false;
+                temp.remove(temp.size()-1);
             }
         }
-        return res;
+        return result;
     }
 
 }
