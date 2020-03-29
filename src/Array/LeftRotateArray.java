@@ -7,7 +7,8 @@ public class LeftRotateArray {
         ArrayList<Integer> ip = new ArrayList<>();
         ip.add(19);
         ip.add(4);
-        ip.add(4);
+        ip.add(5);
+        ip.add(3);
         System.out.print(solve(ip));
     }
 
@@ -16,7 +17,7 @@ public class LeftRotateArray {
         ArrayList<Integer> temp = new ArrayList<>(A);
         for(int i =0; i< A.size(); i++){
             result.add(getPower(temp));
-//            System.out.println(temp);
+            System.out.println(temp);
             int first = temp.get(0);
             temp.remove(0);
             temp.add(first);
