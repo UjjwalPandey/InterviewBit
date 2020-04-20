@@ -17,36 +17,6 @@
 package Tree;
 
 public class SymmetricBinaryTree {
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-        TreeNode(int x) {
-            val = x;
-            left=null;
-            right=null;
-        }
-    }
-
-    public static void main(String[] args) {
-        TreeNode tree1 = new TreeNode(1);
-        tree1.left = new TreeNode(2);
-        tree1.right = new TreeNode(2);
-        tree1.left.left = new TreeNode(3);
-        tree1.left.right = new TreeNode(4);
-        tree1.right.left = new TreeNode(4);
-        tree1.right.right = new TreeNode(3);
-
-        System.out.println(isSymmetric(tree1));
-
-        TreeNode tree2 = new TreeNode(1);
-        tree2.left = new TreeNode(2);
-        tree2.right = new TreeNode(2);
-        tree2.left.right = new TreeNode(3);
-        tree2.right.right = new TreeNode(3);
-        System.out.println(isSymmetric(tree2));
-    }
-
     static int result;
     public static int isSymmetric(TreeNode A) {
         if(A == null || (A.left == null && A.right == null)) return 1;
@@ -79,4 +49,36 @@ public class SymmetricBinaryTree {
         check(A.right, B.left);
     }
 
+    
+    static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+        TreeNode(int x) {
+            val = x;
+            left=null;
+            right=null;
+        }
+    }
+
+    public static void main(String[] args) {
+        TreeNode tree1 = new TreeNode(1);
+        tree1.left = new TreeNode(2);
+        tree1.right = new TreeNode(2);
+        tree1.left.left = new TreeNode(3);
+        tree1.left.right = new TreeNode(4);
+        tree1.right.left = new TreeNode(4);
+        tree1.right.right = new TreeNode(3);
+
+        System.out.println(isSymmetric(tree1));
+
+        TreeNode tree2 = new TreeNode(1);
+        tree2.left = new TreeNode(2);
+        tree2.right = new TreeNode(2);
+        tree2.left.right = new TreeNode(3);
+        tree2.right.right = new TreeNode(3);
+        System.out.println(isSymmetric(tree2));
+    }
+
+    
 }
