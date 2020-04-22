@@ -46,6 +46,7 @@ public class LeastCommonAncestor {
         tree1.left.right = new TreeNode(4);
         tree1.left.right.right = new TreeNode(5);
         System.out.println(findLCA(tree1,5,4));
+        System.out.println(lowestCommonAncestor(tree1,new TreeNode(5),new TreeNode(4)).val);
 
         TreeNode tree2 = new TreeNode(1);
         tree2.left = new TreeNode(2);
@@ -56,8 +57,12 @@ public class LeastCommonAncestor {
         tree2.right.right = new TreeNode(7);
         tree2.left.left.left = new TreeNode(8);
         System.out.println(findLCA(tree2,4,5));
+        System.out.println(lowestCommonAncestor(tree2,new TreeNode(4),new TreeNode(5)).val);
     }
 
+    /**
+        Integer value based
+     */
     static ArrayList<Integer> list1, list2;
     static boolean isFound;
     private static int findLCA(TreeNode root, int n1, int n2) {
@@ -66,14 +71,10 @@ public class LeastCommonAncestor {
         list1 = new ArrayList<>();
         list2 = new ArrayList<>();
         fillQueue(root, n1, list1);
-//        System.out.println(list1);
         if(!isFound) return -1;
         isFound = false;
         fillQueue(root, n2, list2);
         if(!isFound) return -1;
-//        System.out.println(list2);
-//        System.out.println();
-//        System.out.println();
         if(list1.isEmpty() || list2.isEmpty()) return -1;
         int result = -1;
         int size = Math.min(list1.size(), list2.size());
@@ -84,10 +85,8 @@ public class LeastCommonAncestor {
         }
         return result;
     }
-
     private static void fillQueue(TreeNode root, int N, ArrayList<Integer> list) {
         if(root == null) return;
-//            System.out.println(list + "   " + root.val);
             if (root.val == N) {
                 list.add(N);
                 isFound = true;
@@ -99,5 +98,47 @@ public class LeastCommonAncestor {
             fillQueue(root.right, N, list);
             if (isFound) return;
             list.remove(list.size()-1);
+    }
+
+
+    /**
+     TreeNode based
+     */
+    static ArrayList<TreeNode> list1TreeNode, list2TreeNode;
+    static boolean isFoundTreeNode;
+    public static TreeNode lowestCommonAncestor(TreeNode root, TreeNode n1, TreeNode n2){
+        if(root == null) return null;
+        isFoundTreeNode = false;
+        list1TreeNode = new ArrayList<>();
+        list2TreeNode = new ArrayList<>();
+        fillQueue(root, n1, list1TreeNode);
+        if(!isFoundTreeNode) return null;
+        isFoundTreeNode = false;
+        fillQueue(root, n2, list2TreeNode);
+        if(!isFoundTreeNode) return null;
+        if(list1.isEmpty() || list2.isEmpty()) return null;
+        TreeNode result = null;
+        int size = Math.min(list1.size(), list2.size());
+        int i=0;
+        while (i < size){
+            if(list1TreeNode.get(i).val != list2TreeNode.get(i).val) return result;
+            result = list1TreeNode.get(i++);
+        }
+        return result;
+    }
+
+    private static void fillQueue(TreeNode root, TreeNode N, ArrayList<TreeNode> list) {
+        if(root == null) return;
+        if (root.val == N.val) {
+            list.add(N);
+            isFoundTreeNode = true;
+            return;
+        }
+        list.add(root);
+        fillQueue(root.left, N, list);
+        if (isFoundTreeNode) return;
+        fillQueue(root.right, N, list);
+        if (isFoundTreeNode) return;
+        list.remove(root);
     }
 }
