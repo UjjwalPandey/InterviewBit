@@ -1,0 +1,21 @@
+|**** GREEDY ALGORITHMS ****|
+
+If any point of time the changes in local answer will impact and contribute to the Global answer then it involves Greedy Approach.
+
+Ques: Is greedy going to work every time?
+Ans: NO. eg - Finding a Minimum distance in graph problem, where greedy algo will fail giving right result.
+    D
+  1/   \3
+A - 2 - B
+  1\  /4
+    C
+
+ In above problem, Greedy algo will ignore AB to get minimum distance and will move either to AC or AD. This wil yield wrong result.
+
+ Thus, MUTUAL EXCLUSIVITY of each step with another is the desired trait.
+
+
+ Q - Real life example of Greedy Algorithm?
+ Ans: In Compression Algorithm. eg-
+    1. Huffman Encoding and Decoding.
+    2. Minimum Spanning Tree.
