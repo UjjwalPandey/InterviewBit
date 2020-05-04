@@ -50,7 +50,8 @@ public class Reverse_Bits {
             }
             a = a / 2;
         }
-        str.append("0".repeat(Math.max(0, 32 - str.length() + 1)));
+//        str.append("0".repeat(Math.max(0, 32 - str.length() + 1)));
+        str.append(new String(new char[Math.max(0, 32 - str.length() + 1)]).replace("\0", "0"));
 
         String[] ch = str.toString().split("");
         for(int i=31; i>=0; i--){
