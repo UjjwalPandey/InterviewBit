@@ -94,14 +94,14 @@ public class NMaxPairCombinations {
         PriorityQueue<Integer> priorityQueue = new PriorityQueue<>();
 
         for(int i=0; i<one.size(); i++) {
-            for(int j=0; j<two.size(); j++) {
+            for (Integer integer : two) {
 
-                int sum = one.get(i) + two.get(j);
+                int sum = one.get(i) + integer;
                 priorityQueue.add(sum);
 
                 if (priorityQueue.size() > one.size()) {
                     int lastElement = priorityQueue.poll();
-                    if(lastElement==sum) break;
+                    if (lastElement == sum) break;
                 }
             }
         }
