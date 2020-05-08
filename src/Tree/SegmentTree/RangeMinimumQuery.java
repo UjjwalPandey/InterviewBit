@@ -115,25 +115,18 @@ public class RangeMinimumQuery {
         resLen =0;
 
         constructST(A,A.length);
-//        System.out.println(Arrays.toString(A));
-//        System.out.println(Arrays.toString(st));
-//        System.out.println(Arrays.toString(arrayElementInST));
         for (int[] arr : B){
             if(arr[0] == 0){
                 A[arr[1]-1] = arr[2];
-                update(A.length, arrayElementInST[arr[1]-1], arr[2]);
-//                constructSTUtil(A, 0, A.length - 1, 0);
-//                System.out.println(Arrays.toString(st));
+                update(arrayElementInST[arr[1]-1], arr[2]);
             }else{
                 res[resLen++] = RMQ(A.length, arr[1]-1, arr[2]-1);
             }
-//            System.out.println(Arrays.toString(A));
         }
-//        System.out.println(Arrays.toString(st));
         return res;
     }
 
-    static void update(int n, int pos, int val) {
+    static void update(int pos, int val) {
         st[pos] = val;
         do {
             int left = pos;
