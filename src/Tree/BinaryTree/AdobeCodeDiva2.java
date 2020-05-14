@@ -1,4 +1,4 @@
-package Tree;
+package Tree.BinaryTree;
 
 import java.io.BufferedReader;
 import java.io.IOException;

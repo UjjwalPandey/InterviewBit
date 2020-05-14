@@ -21,7 +21,7 @@
              Difference = 2 > 1.
 
  */
-package Tree;
+package Tree.BinaryTree;
 
 public class BalancedBinaryTree {
     static class TreeNode {

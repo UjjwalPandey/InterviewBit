@@ -52,7 +52,7 @@
      3 possible pair exists: {(1, 2), (2, 4), (1, 3)}.
 
  */
-package Tree;
+package Tree.BinaryTree;
 
 import java.util.ArrayList;
 

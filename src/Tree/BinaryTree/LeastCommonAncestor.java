@@ -23,7 +23,7 @@ You can use extra memory, helper functions, and can modify the node struct but, 
  NOTE: You only need to implement the given function. Do not read input, instead use the arguments to the function. Do not print the output, instead return values as specified. Still have a doubt? Checkout Sample Codes for more details
 
  */
-package Tree;
+package Tree.BinaryTree;
 
 import java.util.ArrayList;
 

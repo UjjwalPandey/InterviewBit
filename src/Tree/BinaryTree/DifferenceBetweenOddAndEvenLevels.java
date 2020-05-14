@@ -30,7 +30,7 @@
         Sum of ndoes at even level = 12
 
  */
-package Tree;
+package Tree.BinaryTree;
 
 public class DifferenceBetweenOddAndEvenLevels {
     static class TreeNode {

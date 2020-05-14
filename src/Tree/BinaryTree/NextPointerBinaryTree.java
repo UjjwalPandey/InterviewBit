@@ -24,7 +24,7 @@
         3->4->6->7 -> NULL
 
  */
-package Tree;
+package Tree.BinaryTree;
 
 import java.util.LinkedList;
 import java.util.Queue;

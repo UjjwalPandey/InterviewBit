@@ -62,7 +62,7 @@
      "a", "b" and c" are not prefixes of any other word. So, we can use of first letter of each to represent.
 
  */
-package Trie;
+package Tree.Trie;
 
 import java.util.ArrayList;
 import java.util.HashMap;

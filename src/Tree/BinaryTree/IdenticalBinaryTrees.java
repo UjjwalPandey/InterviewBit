@@ -13,7 +13,7 @@
       1 or True
 
  */
-package Tree;
+package Tree.BinaryTree;
 
 public class IdenticalBinaryTrees {
     static class TreeNode {

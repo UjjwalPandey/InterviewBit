@@ -15,7 +15,7 @@
      NOTE : You may assume 1 <= k <= Total number of nodes in BST
 
  */
-package Tree;
+package Tree.BinaryTree;
 
 public class KthSmallestElementInTree {
     static class TreeNode {

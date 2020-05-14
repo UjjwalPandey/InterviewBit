@@ -29,7 +29,7 @@
          [1, 2, 4, 5, 6, 7, 3] 
 
  */
-package Tree;
+package Tree.BinaryTree;
 
 import java.util.ArrayList;
 import java.util.TreeMap;

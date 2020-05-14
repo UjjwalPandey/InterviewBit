@@ -34,7 +34,7 @@
             Given binary tree itself is BST.
 
  */
-package Tree;
+package Tree.BinaryTree;
 
 public class LargestBSTSubtree {
     static class TreeNode {

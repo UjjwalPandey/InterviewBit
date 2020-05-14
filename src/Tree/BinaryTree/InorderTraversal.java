@@ -13,7 +13,7 @@
     Using recursion is not allowed.
 
  */
-package Tree;
+package Tree.BinaryTree;
 
 import java.util.ArrayList;
 
