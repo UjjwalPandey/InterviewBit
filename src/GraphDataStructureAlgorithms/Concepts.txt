@@ -83,7 +83,7 @@ Unlike Tree Traversal we have certain issues in Graph traversal:
     B. Direction for traversal unknown(Tree has children)  - Have to traverse through neighbours.
     C. Cyclic nature of graph. May lead to infinite loop. - Thus, need to maintain a visited array.
 
-1. DEPTH FIRST SEARCH
+1. DEPTH FIRST SEARCH (DFS)
     a. Choose any node of graph, put it in visited[]
     b. Choose any of it's neighbour, keeping other in buffer(LIFO)
     c. Repeat 1 & 2 until a node found with no neighbour/unvisited neighbour.
@@ -107,8 +107,36 @@ Unlike Tree Traversal we have certain issues in Graph traversal:
         }
 
     Time Complexity = O(V*E); as at least we are traversing all nodes. Thus O(V) TC, but also we are traversing all nodes in:
-        - Adjacency LIST, therefore, TC will include Edges also. Thus final TC will be O(VE) in worst case for undirected graph.
+        - Adjacency LIST, therefore, TC will include Edges also. Thus final TC will be O(V+E) in worst case for undirected graph.
         - Adjacency MATRIX, we won't look for edges but for the matrix. Thus TC will be O(V^2).
 
 
-2. BREADTH FIRST SEARCH
+2. BREADTH FIRST SEARCH (BFS)  -- Traversal Level by Level
+    a. Choose any node of graph, put it in visited[] appoint it as a beginning node.
+    b. Nodes adjacent to beginning node will be at Level 1, subsequently adjacent to adjacent node will be at level 2, and so on.
+        * Level(x) = Node x edges away from the beginning node.
+    c. BFS is implemented using Queue i.e. FIFO order.
+
+    ** PSEUDOCODE for BFS/ Non-Recursive **
+
+        BFS(G, S){ // G: Graph and S: Source Node
+            Queue.enqueue(S)
+            visited[S] = true
+            while(!Q.empty){
+                v = Q.dequeue()
+                for all neighbours w of Node v in G{
+                    if(!visited[w]){
+                        Q.enqueue(w)
+                        visited[w] = true
+                    }
+                }
+            }
+        }
+
+    ** TO FIND THE SHORTEST PATH BETWEEN TWO NODES IN A UNWEIGHTED UNDIRECTED GRAPH WE USE BFS
+        as In BFS we start from the closest Node first and move gradually to the farther one.
+    ** BUT for a WEIGHTED/DIRECTED path to find the Shortest path, the BFS WON'T WORK.
+        To solve such problem:
+            CASE 1. If we have only 2 weights 1 and 2 :- Then we can simply put an additional DUMMY NODE in place of wt 2.
+            CASE 2. For weights with different values(say 10^8):
+                    Here, "VARIATION IN WEIGHTS" is the actual problem, and not the high weight per se.
