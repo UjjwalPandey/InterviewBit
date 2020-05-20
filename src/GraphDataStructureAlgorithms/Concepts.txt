@@ -1,0 +1,114 @@
+************************************************ GRAPH BASICS ************************************************
+
+# Definition:  Collection of nodes/vertices and edges.  G=(V,E)
+    Single Node is also considered as graph. And even G(2,0) is also a graph, but DISCONNECTED GRAPH.
+    All Time Complexities related discussions are based solely on V & E. No special mentioning of Nodes as in LinkedList.
+
+# Importance: 60-70% Questions asked in Google based on Graph.
+
+# CLASSIFICATION OF GRAPH ON THE BASIS OF EDGES:
+# Based on edge's direction:-
+    1. BIDIRECTIONAL: No directed edges, or in both direction.
+    2. UNIDIRECTIONAL: Directed edges.
+# Based on Weights of Nodes or Edges:-
+    1. WEIGHTED: Assigning an attribute to the edges, with constraint :-
+        a. Should be Quantifiable
+        b. Should be Comparable
+    2. UNWEIGHTED: No/Same attributes to edges. Thus, every graph is weighted graph unless all the attributes are Equal.
+
+
+# APPLICATIONS OF GRAPH:
+    1. Represent Connection of Facebook Friends - Bidirectional
+    2. Twitter/Instagram Follower - Unidirectional
+    3. Git - A Version Controlled System - Master/Branches - It's Directional
+
+
+    # Further Examples:
+        1. Unweighted and undirected graph
+            - Facebook
+        2. Unweighted and directed graph
+            - Twitter, Instagram
+        3. Weighted and undirected graph
+            - Metro Link, Google Maps(All roads bidirectional)
+        4. Weighted and directed graph
+            - "Split wise"
+
+# Simple Graph =
+    1. No Self Loops - i.e particular Node referring itself(Source == Sink).
+    2. No Multiple edges.
+
+* TREE is a special type of Graph with NO CYCLE. For connecting any two nodes in Tree we have ONLY one path to follow.
+Thus for a N Node Binary Tree we can have at max N-1 Edges.
+
+# CLIQUE = A Graph with every two Vertices directly interconnected.
+
+# CONNECTED COMPONENT OF A GRAPH is a sub-graph such that if any 2 nodes are picked then we can visit them through some path.
+Similarly think of a Directed Tree, then, it won't be a Connected Component.
+
+######################################## GRAPH REPRESENTATION ########################################
+1. ADJACENCY MATRIX
+    - For a graph of V vertices we will store it in Matrix of Sze V^2.
+        For Graph:  A--B--C
+        Adjacency Matrix:
+              A B C
+            A 0 1 0
+            B 1 0 1
+            C 0 1 0
+     - If No self loop the the diagonal will always be zero.
+     - For Undirected Graph we will have Symmetrical matrix.
+
+2. ADJACENCY LIST
+    - To overcome space issue for a very big Graph, or a Sparse Graph. Building ArrayList<ArrayList<Integer>>
+
+    0 -> [1]
+    1 -> [0, 2, 3]
+    2 -> [1, 3]
+    3 -> [1, 2]
+
+- Which Representation is Better in above two?
+    Subjective answer:
+        * Adjacency List good for sparse graph but same space complexity if Dense Matrix.
+        * Check if two Nodes Directly connected:- Matrix would be better
+        * Checking all the neighbours:- List would be better
+
+3. ADJACENCY MAP
+    - For a given Graph, prepare HashMap of HashMap, storing values like: Node1 -> (Neighbour(Node1), Edge's Value).
+    - This will solve the issue of ADJACENCY LIST when the starting Node value isn't 0, or it's some String value.
+    - This will again have problem in finding if the two nodes are neighbour or not.
+
+
+######################################## GRAPH TRAVERSAL ########################################
+Unlike Tree Traversal we have certain issues in Graph traversal:
+    A. Root node not known
+    B. Direction for traversal unknown(Tree has children)  - Have to traverse through neighbours.
+    C. Cyclic nature of graph. May lead to infinite loop. - Thus, need to maintain a visited array.
+
+1. DEPTH FIRST SEARCH
+    a. Choose any node of graph, put it in visited[]
+    b. Choose any of it's neighbour, keeping other in buffer(LIFO)
+    c. Repeat 1 & 2 until a node found with no neighbour/unvisited neighbour.
+    d. Bring the last element form the buffer(LIFO) and traverse over it following 1 & 2.
+        // Backtracking in LIFO order.
+
+    ** RECURSIVE PSEUDOCODE for DFS**
+        main(){
+            Initialise: visited[] -> false
+            for all v:              // DFS won't work for disconnected graph otherwise
+                if(!visited[v])
+                    DFS(v)
+        }
+
+        DFS(int i){
+            print i;
+            visited[i] = true;
+            for all j in adjList[i]
+                if(!visited[j])
+                    DFS(j)
+        }
+
+    Time Complexity = O(V*E); as at least we are traversing all nodes. Thus O(V) TC, but also we are traversing all nodes in:
+        - Adjacency LIST, therefore, TC will include Edges also. Thus final TC will be O(VE) in worst case for undirected graph.
+        - Adjacency MATRIX, we won't look for edges but for the matrix. Thus TC will be O(V^2).
+
+
+2. BREADTH FIRST SEARCH
