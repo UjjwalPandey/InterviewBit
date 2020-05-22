@@ -52,7 +52,7 @@ Write an efficient algorithm for the following assumptions:
 
  */
 
-package ProgrammingRounds.codechef;
+package ProgrammingRounds.codility;
 
 public class Palladium2020_CoverBuildings {
     public static void main(String[] args) {
