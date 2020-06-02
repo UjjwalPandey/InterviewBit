@@ -45,6 +45,11 @@ Thus for a N Node Binary Tree we can have at max N-1 Edges.
 # CONNECTED COMPONENT OF A GRAPH is a sub-graph such that if any 2 nodes are picked then we can visit them through some path.
 Similarly think of a Directed Tree, then, it won't be a Connected Component.
 
+### CYCLE IN A GRAPH:
+    There is a cycle in the graph if and only if there is a BACK-EDGE in the graph.
+    BACK_EDGE is an edge that is from a node to itself OR a node to any of its ancestors.
+    * To find ancestor we will implement DFS in a directed graph.
+
 ######################################## GRAPH REPRESENTATION ########################################
 1. ADJACENCY MATRIX
     - For a graph of V vertices we will store it in Matrix of Sze V^2.
@@ -140,3 +145,35 @@ Unlike Tree Traversal we have certain issues in Graph traversal:
             CASE 1. If we have only 2 weights 1 and 2 :- Then we can simply put an additional DUMMY NODE in place of wt 2.
             CASE 2. For weights with different values(say 10^8):
                     Here, "VARIATION IN WEIGHTS" is the actual problem, and not the high weight per se.
+
+
+######################################## GRAPH COLORING ########################################
+    * Given a graph G, and K colors, assign a color to each node so that the adjacent nodes are of different colors
+    * CHROMATIC NUMBER = The minimum value of K, for which coloring graph coloring exists is called Chromatic Number.
+
+    ## NP COMPLETE PROBLEM: A class of problem, where STATUS IS UNKNOWN &, there is no polynomial time algorithm to find the solution of the problem. but,
+        even if you find the solution for one problem then you will be able to find solution for all the problems. And reverse is also true.
+
+    ## Basic APPROXIMATE Algorithm:(No the best algorithm)
+        1. Order the nodes v1, v2, v3, vM in any random ordering,   --> Hit and trial method. No best way for ordering.
+        2. Similarly order the colors
+        3. Process each node at a time for i = 1 ... M
+        4. Assign the lowest legal color to V.
+
+    ## WELSH POWELL ALGORITHM  ==  GREEDY COLORING TECHNIQUE        // Yet not the optimal, but close to real answer.
+        FOR BETTER ORDERING (CLEVER FINDING):
+            a. UNWEIGHTED GRAPHS: Pick highest degree Node(i.e. number of nodes with which a node is directly connected).
+            b. and continue with Step 2.
+
+    ## THEOREM:
+        If every node in a N node graph G, has degree d, then basic algorithm uses at MOST d+1 colors in G.
+
+    ## Usages pf graph coloring:
+        1. Bipartite Graphs
+        2. Scheduling a timetable
+        3. Image Segmentation in Machine Learning.
+        4. Sudoku.
+
+######################################## BIPARTITE GRAPH ########################################
+Definition:     A graph G = (V,E) is called bipartite if V can be split into VL, VR so that all the edges connect a node in VL to a node in VR.
+    Also, a bipartite graph can be colored using only two colors.
