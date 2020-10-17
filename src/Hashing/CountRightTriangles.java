@@ -71,8 +71,6 @@
  */
 package Hashing;
 
-import scala.Int;
-
 import java.util.HashMap;
 
 public class CountRightTriangles {
