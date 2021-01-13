@@ -8,7 +8,7 @@ public class Arrange_Array_To_Form_Largest_Number {
     public static void main(String[] args) {
 //        int[] a = {3, 30, 34, 5, 9};
 //        int[] a = {0,0,0,0};
-        int[] a = {12, 121};
+        int[] a = {12, 121, 3, 129};
         System.out.println(largestNumber(a));
     }
 
